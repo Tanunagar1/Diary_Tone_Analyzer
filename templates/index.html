@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary Tone</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Diary Tone</h1>
+
+    <div>
+        <h2>Positivity</h2>
+        <div id="pos_chart"></div>
+    </div>
+
+    <div>
+        <h2>Negativity</h2>
+        <div id="neg_chart"></div>
+    </div>
+
+
+    <script>
+        var dates = {{ dates|tojson|safe }};
+        var positivity = {{ positivity|tojson|safe }};
+        var negativity = {{ negativity|tojson|safe }};
+
+
+        var pos_trace = {
+            x: dates,
+            y: positivity,
+            type: 'line',
+            name: 'Positivity'
+        };
+
+        var neg_trace = {
+            x: dates,
+            y: negativity,
+            type: 'line',
+        };
+
+        var pos_layout = {
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Positivity'
+            }
+        };
+
+        var neg_layout = {
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Negativity'
+            }
+        };
+
+        Plotly.newPlot('pos_chart', [pos_trace], pos_layout);
+        Plotly.newPlot('neg_chart', [neg_trace], neg_layout);
+    </script>
+</body>
+</html>
