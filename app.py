@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import glob
+import nltk
 from pathlib import Path
 from nltk.sentiment import SentimentIntensityAnalyzer
 
